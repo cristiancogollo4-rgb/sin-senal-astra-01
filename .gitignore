@@ -1,0 +1,21 @@
+# Dependencias
+node_modules/
+
+# Secretos y variables de entorno
+.env*
+
+# Vercel
+.vercel/
+.vercel*/
+.vercel-cli/
+.vercel-cli-cache/
+.vercel-cli-global/
+
+# Herramientas locales
+.codebase-memory/
+.ui-craft/
+
+# Archivos generados
+outputs/
+*.zip
+*.log

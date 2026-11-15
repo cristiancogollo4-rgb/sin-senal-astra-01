@@ -1,0 +1,58 @@
+{
+  "root": "C:\\Users\\LENOVO LOQ\\Documents\\Codex\\2026-10-14\\vam",
+  "files_scanned": 4,
+  "passed": true,
+  "states": {
+    "loading": {
+      "present": true,
+      "matched_terms": [
+        "/loading/i"
+      ]
+    },
+    "empty": {
+      "present": true,
+      "matched_terms": [
+        "/empty/i"
+      ]
+    },
+    "error": {
+      "present": true,
+      "matched_terms": [
+        "/error/i"
+      ]
+    },
+    "disabled": {
+      "present": true,
+      "matched_terms": [
+        "/disabled/i"
+      ]
+    },
+    "focus": {
+      "present": true,
+      "matched_terms": [
+        "/focus-visible/i",
+        "/:focus/i"
+      ]
+    },
+    "selected": {
+      "present": true,
+      "matched_terms": [
+        "/selected/i"
+      ]
+    },
+    "submitting": {
+      "present": true,
+      "matched_terms": [
+        "/submitting/i"
+      ]
+    },
+    "success": {
+      "present": true,
+      "matched_terms": [
+        "/complete/i"
+      ]
+    }
+  },
+  "missing": [],
+  "note": "All state markers found."
+}

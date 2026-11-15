@@ -1,0 +1,14 @@
+{
+  "name": "astra-01",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Arcade espacial educativo 3D infinito con reconocimiento Nmap, balizas, armas y defensas.",
+  "scripts": {
+    "build": "node scripts/prepare-vercel.mjs",
+    "start": "node server.js",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  }
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#050814" />
+    <meta name="description" content="Arcade espacial educativo para aprender ciberseguridad de forma segura y divertida." />
+    <title>Sin Señal · Astra-01</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Saltar al juego</a>
+    <div class="scanlines" aria-hidden="true"></div>
+    <main class="game-app">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Volver al hangar">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="brand-copy"><strong>Astra-01</strong><small>Academia Cibersegura</small></span>
+        </a>
+        <div class="topbar-status"><span class="status-led"></span><span id="header-status">HANGAR EN ESPERA</span></div>
+        <div class="topbar-actions">
+          <span class="record-label">RÉCORD <strong id="header-high-score">000000</strong></span>
+          <button class="header-button" id="sound-toggle" data-action="mute" type="button" aria-pressed="false">Sonido: sí</button>
+          <button class="header-button" data-action="settings" type="button">Ajustes</button>
+          <button class="help-button" id="help-button" type="button" aria-label="Ver controles">?</button>
+        </div>
+      </header>
+
+      <div id="app" class="app-content" tabindex="-1"><p role="status">Preparando motores…</p><noscript>Activa JavaScript para iniciar el vuelo 3D.</noscript></div>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <dialog class="help-dialog" id="help-dialog">
+      <div class="dialog-heading">
+        <div><span class="overline">Vuelo infinito</span><h2>Cómo jugar</h2></div>
+        <button class="dialog-close" id="close-help" data-action="close-help" type="button" aria-label="Cerrar controles">×</button>
+      </div>
+      <div class="help-grid">
+        <div><kbd>W A S D</kbd><span>Mover la nave</span></div>
+        <div><kbd>FLECHAS</kbd><span>Mover la nave</span></div>
+        <div><kbd>1 2 3 4</kbd><span>Activar comodines recogidos</span></div>
+        <div><kbd>SHIFT / P</kbd><span>Acelerar / pausar</span></div>
+      </div>
+      <div class="dialog-note"><strong>Esquiva y decide.</strong> El disparo es automático. Las monedas dan puntos, no energía. Busca cruces verdes para reparar. Las cápsulas Triple y Perforante cambian tu arma durante 12 segundos; después vuelve el láser. La nave atrae objetos cercanos a sus alas.</div>
+      <div class="dialog-note"><strong>Nmap tiene un propósito.</strong> Recoge el comodín y pulsa 1 o Espacio. El pulso revela las balizas: <strong>+ ABIERTO</strong> permite recoger suministros, <strong>× CERRADO</strong> no tiene servicio, <strong>? FILTRADO</strong> no permite conocer su estado. Un puerto abierto no significa que sea vulnerable. La recogida de suministros es una analogía del juego.</div>
+      <p class="help-safety">Puedes guardar dos cargas de cada comodín. Activa Firewall ante proyectiles, Señuelo para desviarlos o prepara Respaldo antes de un golpe fatal. Las barreras siempre se esquivan. En móvil, mantén pulsados los controles; ⇥ activa el impulso.</p>
+      <div class="powerup-guide" id="powerup-guide"></div>
+      <p class="help-safety">La partida continúa hasta que te quedas sin energía. Los efectos son analogías arcade y no ejecutan herramientas de red reales.</p>
+      <p class="help-sources">Fuentes: <a href="https://nmap.org/book/man.html" target="_blank" rel="noreferrer">Nmap</a> · <a href="https://csrc.nist.gov/glossary/term/firewall" target="_blank" rel="noreferrer">Firewall</a> · <a href="https://csrc.nist.gov/glossary/term/honeypot" target="_blank" rel="noreferrer">Honeypot</a> · <a href="https://www.cisa.gov/stopransomware/ransomware-guide" target="_blank" rel="noreferrer">Respaldos</a></p>
+    </dialog>
+
+    <dialog class="help-dialog settings-dialog" id="settings-dialog" aria-labelledby="settings-title">
+      <div class="dialog-heading"><h2 id="settings-title">A tu manera</h2><button class="dialog-close" data-action="close-settings" type="button" aria-label="Cerrar ajustes">×</button></div>
+      <p>El vuelo queda en pausa mientras cambias los ajustes.</p>
+      <label class="setting-row" for="music-volume"><span>Música</span><input id="music-volume" type="range" min="0" max="100" value="22" /></label>
+      <label class="setting-row" for="effects-volume"><span>Efectos de sonido</span><input id="effects-volume" type="range" min="0" max="100" value="40" /></label>
+      <label class="setting-row" for="mute-setting"><span>Silenciar todo</span><input id="mute-setting" type="checkbox" /></label>
+      <label class="setting-row" for="reduced-setting"><span>Reducir efectos visuales</span><input id="reduced-setting" type="checkbox" /></label>
+      <label class="setting-row" for="quality-setting"><span>Gráficos</span><select id="quality-setting"><option value="auto">Automático</option><option value="normal">Con brillo</option><option value="fluid">Priorizar fluidez</option></select></label>
+      <label class="setting-row" for="skin-setting"><span>Diseño de nave</span><select id="skin-setting"></select></label>
+      <p id="audio-availability" class="help-safety"></p><p class="help-safety">Los diseños solo cambian la apariencia. Tus ajustes y el récord se guardan en este navegador cuando el almacenamiento está disponible. Esta versión conserva por separado los récords de versiones anteriores.</p>
+      <button class="start-button" data-action="close-settings" type="button">Guardar y cerrar</button>
+    </dialog>
+
+    <script type="importmap">{"imports":{"three":"/vendor/three.module.js","three/addons/":"/vendor/addons/"}}</script>
+    <script type="module">
+      import('/app.js').catch(error => {
+        console.error('No se pudo cargar el juego:', error);
+        const app = document.querySelector('#app');
+        app.innerHTML = '<section class="graphics-error"><h1>No llegó la señal.</h1><p>Comprueba que el servidor local siga abierto y vuelve a cargar el juego.</p><button class="start-button" id="retry-load" type="button">Volver a cargar</button></section>';
+        document.querySelector('#retry-load').addEventListener('click', () => location.reload());
+      });
+    </script>
+  </body>
+</html>
